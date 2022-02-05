@@ -1,0 +1,34 @@
+STUDENTE
+- matricola: int
+- codice fiscale: String
+- nome: String
+- cognome: String
+
+CORSO
+- codice: String
+- materia: String
+- docente: String
+- cfu: int
+
+ESAME
+- data esame: Date
+- voto: int
+- lode: boolean
+
+STUDENTE * ----- * CORSO
+STUDENTE 1 ----- * ESAME * ----- 1 CORSO
+
+1) inserimento studente 
+2) inserimento corso
+3) inserimento esame (ricercare studente e corso)
+4) calcola media esami di uno studente
+5) ricercare tutti gli esami sostenuti tra data X e data Y
+6) ricercare tutti gli studenti che hanno media esami > X
+
+
+
+2 modi per risolverlo: 
+    1) creare un TreeMap<Corso, TreeMap<Studente, TreeSet<Esame>>>; metodo diverso ed interessante;
+    SI DISCOSTA DALLA LOGICA DEL DB
+    2) creare delle classi di relazione, tipo Studente_Corso, e quindi ricreare dentro Java la stessa logica del DB 
+    (le domande della consegna sono query)
