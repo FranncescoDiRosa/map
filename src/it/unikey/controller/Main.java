@@ -27,7 +27,10 @@ public class Main {
 
         Esame m = new Esame(java.util.Calendar.getInstance(), 18, false, g, c);
         Esame n = new Esame(Calendar.getInstance(), 30, true , g, d);
+        Esame o = new Esame(Calendar.getInstance(), 29, false, h, e);
+        Esame p = new Esame(Calendar.getInstance(), 19, false , i, f);
 
         System.out.println(Esame.getAvgVote(g));
+        System.out.println(Esame.studentiAvgMaggioreDiN(20));
     }
 }

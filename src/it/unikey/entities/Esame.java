@@ -81,6 +81,12 @@ public class Esame
     public static ArrayList<Studente> studentiAvgMaggioreDiN(int avg)
     {
         ArrayList<Studente> res = new ArrayList<>();
+        Set<Studente> stud = mappaStudenti.keySet();
+        for(Studente s : stud)
+            if(getAvgVote(s) > avg)
+                res.add(s);
         return res;
     }
+
+    
 }
