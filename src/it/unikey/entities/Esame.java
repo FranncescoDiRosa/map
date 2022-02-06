@@ -1,25 +1,36 @@
 package it.unikey.entities;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import org.omg.CORBA.WStringSeqHelper;
+
+import java.util.*;
 
 public class Esame
 {
+    private static Map<Studente, Map<Corso, Esame>> mappaStudenti = new HashMap();
+
     private String codice;
-    private Date dataEsame;
+    private Calendar dataEsame;
     private int voto;
     private boolean lode;
 
-    public Esame(Date dataEsame, int voto, boolean lode, Studente studente, Corso corso)
+    public Esame(Calendar dataEsame, int voto, boolean lode, Studente studente, Corso corso)
     {
         this.dataEsame = dataEsame;
         this.voto = voto;
         this.lode = lode;
         this.codice = generaCodiceEsame(studente, corso, dataEsame);
+        if(mappaStudenti.get(studente) == null)
+        {
+            Map<Corso, Esame> mappaCorso = new HashMap<>();
+            mappaCorso.put(corso, this);
+            mappaStudenti.put(studente, mappaCorso);
+        }
+        else
+            mappaStudenti.get(studente).put(corso, this);
+
     }
 
-    private String generaCodiceEsame(Studente s, Corso corso, Date dataEsame)
+    private String generaCodiceEsame(Studente s, Corso corso, Calendar dataEsame)
     {
         return s.getMatricola()+"_"+corso.getCodice()+"_"+dataEsame.toString();
     }
@@ -28,7 +39,7 @@ public class Esame
         return codice;
     }
 
-    public Date getDataEsame() {
+    public Calendar getDataEsame() {
         return dataEsame;
     }
 
@@ -52,5 +63,24 @@ public class Esame
             return this.codice.equals(e.codice);
         }
         return false;
+    }
+
+    public static double getAvgVote(Studente studente)
+    {
+        int count = 0;
+        int sum = 0;
+        Collection<Esame> esami =  mappaStudenti.get(studente).values();
+        for(Esame e : esami)
+        {
+            sum += e.voto;
+            count++;
+        }
+        return sum / count;
+    }
+
+    public static ArrayList<Studente> studentiAvgMaggioreDiN(int avg)
+    {
+        ArrayList<Studente> res = new ArrayList<>();
+        return res;
     }
 }

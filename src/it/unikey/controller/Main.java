@@ -3,6 +3,7 @@ package it.unikey.controller;
 import com.sun.org.apache.xpath.internal.operations.Variable;
 
 import it.unikey.entities.Corso;
+import it.unikey.entities.Esame;
 import it.unikey.entities.Studente;
 
 import java.net.CacheRequest;
@@ -24,6 +25,9 @@ public class Main {
         Studente k = new Studente("1234567890123451", "Karol", "Wojtila");
         Studente l = new Studente("1234567890123452", "Maria", "Di Nazaret");
 
+        Esame m = new Esame(java.util.Calendar.getInstance(), 18, false, g, c);
+        Esame n = new Esame(Calendar.getInstance(), 30, true , g, d);
 
+        System.out.println(Esame.getAvgVote(g));
     }
 }
