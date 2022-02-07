@@ -2,6 +2,7 @@ package it.unikey.entities;
 
 import org.omg.CORBA.WStringSeqHelper;
 
+import java.sql.Date;
 import java.util.*;
 
 public class Esame
@@ -9,11 +10,11 @@ public class Esame
     private static Map<Studente, Map<Corso, Esame>> mappaStudenti = new HashMap();
 
     private String codice;
-    private Calendar dataEsame;
+    private Date dataEsame;
     private int voto;
     private boolean lode;
 
-    public Esame(Calendar dataEsame, int voto, boolean lode, Studente studente, Corso corso)
+    public Esame(Date dataEsame, int voto, boolean lode, Studente studente, Corso corso)
     {
         this.dataEsame = dataEsame;
         this.voto = voto;
@@ -30,7 +31,7 @@ public class Esame
 
     }
 
-    private String generaCodiceEsame(Studente s, Corso corso, Calendar dataEsame)
+    private String generaCodiceEsame(Studente s, Corso corso, Date dataEsame)
     {
         return s.getMatricola()+"_"+corso.getCodice()+"_"+dataEsame.toString();
     }
@@ -39,7 +40,7 @@ public class Esame
         return codice;
     }
 
-    public Calendar getDataEsame() {
+    public Date getDataEsame() {
         return dataEsame;
     }
 
@@ -88,5 +89,18 @@ public class Esame
         return res;
     }
 
-    
+    public static ArrayList<String> esamiTraDueDate (Date from, Date to)
+    {
+        ArrayList<String> res = new ArrayList<>();
+        Collection<Map<Corso, Esame>> map = mappaStudenti.values();
+        for(Map<Corso, Esame> m: map)
+        {
+            Collection<Esame> es = m.values();
+            for(Esame e: es)
+                if(e.dataEsame.compareTo(from) >= 0 && e.dataEsame.compareTo(to) <= 0)
+                    res.add(e.codice);
+        }
+        return res;
+    }
+
 }

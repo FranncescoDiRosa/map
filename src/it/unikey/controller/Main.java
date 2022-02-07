@@ -7,8 +7,8 @@ import it.unikey.entities.Esame;
 import it.unikey.entities.Studente;
 
 import java.net.CacheRequest;
+import java.sql.Date;
 import java.util.Calendar;
-import java.util.Date;
 
 public class Main {
 
@@ -20,17 +20,18 @@ public class Main {
 
         Studente g = new Studente("1234567890123457", "Davide", "Piecek");
         Studente h = new Studente("1234567890123458", "Sandro", "Pertini");
-        Studente i = new Studente("1234567890123459", "Toto", "Riina");
+        Studente i = new Studente("1234567890123459", "Totò", "Sapore");
         Studente j = new Studente("1234567890123450", "Giuseppe", "Garibaldi");
         Studente k = new Studente("1234567890123451", "Karol", "Wojtila");
         Studente l = new Studente("1234567890123452", "Maria", "Di Nazaret");
 
-        Esame m = new Esame(java.util.Calendar.getInstance(), 18, false, g, c);
-        Esame n = new Esame(Calendar.getInstance(), 30, true , g, d);
-        Esame o = new Esame(Calendar.getInstance(), 29, false, h, e);
-        Esame p = new Esame(Calendar.getInstance(), 19, false , i, f);
+        Esame m = new Esame(new Date(2022, 01, 05), 18, false, g, c);
+        Esame n = new Esame(new Date(2021, 12, 12), 30, true , g, d);
+        Esame o = new Esame(new Date(2022, 02, 01), 29, false, h, e);
+        Esame p = new Esame(new Date(2022, 01, 15), 19, false , i, f);
 
         System.out.println(Esame.getAvgVote(g));
         System.out.println(Esame.studentiAvgMaggioreDiN(20));
+        System.out.println(Esame.esamiTraDueDate(new Date(2021, 01, 01), new Date(2022, 03, 01)));
     }
 }
