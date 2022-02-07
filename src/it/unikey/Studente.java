@@ -1,5 +1,13 @@
 package it.unikey;
 
+import it.unikey.exception.NotFoundException;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static it.unikey.Main.mapStudenteCorso;
+
 public class Studente {
 
     private int matricola;
@@ -14,6 +22,42 @@ public class Studente {
         this.codiceFiscale = codiceFiscale;
         this.nome = nome;
         this.cognome = cognome;
+    }
+
+    public void inserisciEsame(LocalDate dataEsame, String materia, int voto){
+        try{
+            Corso corso = trovaCorsoTramiteMateria(materia);
+            Esame esame = new Esame(dataEsame, voto, corso);
+            if (!studentePresenteNellHashMap()) {
+                mapStudenteCorso.put(this.getMatricola(), new ArrayList<>(Arrays.asList()));
+            } else {
+                mapStudenteCorso.get(this.matricola).add(esame);
+            }
+        }
+        catch(Exception e){
+            throw new NotFoundException("Corso non trovato!");
+        }
+    }
+
+    public boolean studentePresenteNellHashMap() {
+        for (Integer stud : mapStudenteCorso.keySet()) {
+            if(stud == this.matricola)
+                return true;
+        }
+        return false;
+    }
+
+    public Corso trovaCorsoTramiteMateria(String materia){
+        for(Corso corso : Università.corsi){
+            if(corso.getMateria().equalsIgnoreCase(materia)){
+                return corso;
+            }
+        }
+        return null;
+    }
+
+    public void stampaEsamiStudente() {
+        mapStudenteCorso.get(this.getMatricola()).forEach(System.out::println);
     }
 
     public int getMatricola() {
@@ -55,4 +99,5 @@ public class Studente {
     public static void setCounter(int counter) {
         Studente.counter = counter;
     }
+
 }
