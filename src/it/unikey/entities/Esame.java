@@ -1,7 +1,6 @@
 package it.unikey.entities;
 
 import java.util.Comparator;
-import java.util.UUID;
 import java.sql.Date;
 
 public class Esame implements Comparable<Esame> {

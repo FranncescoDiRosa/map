@@ -6,13 +6,10 @@ import java.util.TreeSet;
 
 public abstract class Universita {
 
-    private static TreeSet<Studente> listaStudenti = new TreeSet<>();
     private static TreeSet<Corso> listaCorsi = new TreeSet<>();
-    private static TreeMap<Corso, TreeSet<Studente>> listaStudentiCorsi = new TreeMap<>();
-
-    private static TreeSet<Esame> listaEsami = new TreeSet<>();
-    private static TreeMap<Esame, Studente> listaEsamiStudenti = new TreeMap<>();
-    private static TreeMap<Esame, Corso> listaEsamiCorsi = new TreeMap<>();
+    private static TreeSet<Studente> listaStudenti = new TreeSet<>();
+    
+    private static TreeMap<Corso, TreeMap<Studente, TreeSet<Esame>>> listaEsami = new TreeMap<>();
 
     public static TreeSet<Studente> getListaStudenti() {
         return listaStudenti;
@@ -22,20 +19,8 @@ public abstract class Universita {
         return listaCorsi;
     }
 
-    public static TreeMap<Corso, TreeSet<Studente>> getListaStudentiCorsi() {
-        return listaStudentiCorsi;
-    }
-
-    public static TreeSet<Esame> getListaEsami() {
+    public static TreeMap<Corso, TreeMap<Studente, TreeSet<Esame>>> getListaEsami() {
         return listaEsami;
-    }
-
-    public static TreeMap<Esame, Studente> getListaEsamiStudenti() {
-        return listaEsamiStudenti;
-    }
-
-    public static TreeMap<Esame, Corso> getListaEsamiCorsi() {
-        return listaEsamiCorsi;
     }
 
     public static void inserisciStudente(Studente studente) {
@@ -59,6 +44,46 @@ public abstract class Universita {
         }
     }
 
+    public static  TreeMap<Studente, TreeSet<Esame>> getListaStudentiCorso(Corso corso) {
+        if (listaEsami.get(corso) == null)
+            listaEsami.put(corso, new TreeMap<Studente, TreeSet<Esame>>());
+        return listaEsami.get(corso);
+    }
+
+    /*
+    public static TreeSet<Esame> getListaEsamiStudente(Corso corso, Studente studente) {
+        if(listaEsamiStudentiCorsi.get(corso).get(studente) == null)
+        listaEsamiStudentiCorsi.get(corso).get(studente).add(new TreeSet<Esame>) 
+    }
+    */
+
+    public static void inserisciEsame(Corso corso, Studente studente, Esame esame) {
+        if(listaCorsi.contains(corso) && (!listaEsami.containsKey(corso))) {
+            listaEsami.put(corso, new TreeMap<Studente, TreeSet<Esame>>());
+            listaEsami.get(corso).put(studente, new TreeSet<Esame>());
+            listaEsami.get(corso).get(studente).add(esame);
+        } else if(listaCorsi.contains(corso) && (listaEsami.containsKey(corso))) {
+            if(listaStudenti.contains(studente) && (!listaEsami.get(corso).containsKey(studente))) {
+                //listaEsami.get(corso).put(new TreeMap<Studente, TreeSet<Esame>>());
+
+            } else {
+                System.out.println("Errore: lo studente specificato non e' presente nel corso specificato, aggiungilo!");
+            }
+        }
+        
+        else {
+            System.out.println("Errore: il corso specificato non e' presente nella lista dei corsi universitari, aggiungilo!");
+        }
+    }
+
+
+
+
+
+
+
+
+    /*
     public static TreeSet<Studente> getListaStudentiNelCorso(Corso corso) {
         if (listaStudentiCorsi.get(corso) == null)
             listaStudentiCorsi.put(corso, new TreeSet<Studente>());
@@ -124,7 +149,6 @@ public abstract class Universita {
         return listaStudentiValidi;
     }
 
-    //RISOLVI PROBLEMA CON LA DATA!!!
     public static TreeSet<Esame> getListaEsamiCompresiXY(Date x, Date y) {
         TreeSet<Esame> listaEsamiValidi = new TreeSet<>();
         for(Esame esame : listaEsami) {
@@ -133,5 +157,5 @@ public abstract class Universita {
         }
         return listaEsamiValidi;
     }
-
+    */
 }
