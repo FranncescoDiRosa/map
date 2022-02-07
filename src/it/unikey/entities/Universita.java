@@ -23,6 +23,18 @@ public abstract class Universita {
         return listaEsami;
     }
 
+    public static TreeMap<Studente, TreeSet<Esame>> getListaStudentiCorso(Corso corso) {
+        if (listaEsami.get(corso) == null)
+            listaEsami.put(corso, new TreeMap<Studente, TreeSet<Esame>>());
+        return listaEsami.get(corso);
+    }
+
+    public static TreeSet<Esame> getListaEsamiStudente(Corso corso, Studente studente) {
+        if (listaEsami.get(corso).get(studente) == null)
+            listaEsami.get(corso).put(studente, new TreeSet<Esame>());
+        return listaEsami.get(corso).get(studente);
+    }
+
     // 1 - Inserisci studente
     public static void inserisciStudente(Studente studente) {
         if (!listaStudenti.contains(studente)) {
@@ -44,18 +56,6 @@ public abstract class Universita {
             System.out.println(
                     "\nErrore: " + corso.getMateria() + " e' gia' registrato nella lista dei corsi universitari");
         }
-    }
-
-    public static TreeMap<Studente, TreeSet<Esame>> getListaStudentiCorso(Corso corso) {
-        if (listaEsami.get(corso) == null)
-            listaEsami.put(corso, new TreeMap<Studente, TreeSet<Esame>>());
-        return listaEsami.get(corso);
-    }
-
-    public static TreeSet<Esame> getListaEsamiStudente(Corso corso, Studente studente) {
-        if (listaEsami.get(corso).get(studente) == null)
-            listaEsami.get(corso).put(studente, new TreeSet<Esame>());
-        return listaEsami.get(corso).get(studente);
     }
 
     // 3 - Inserisci esame
