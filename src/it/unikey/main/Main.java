@@ -116,7 +116,7 @@ public class Main {
         System.out.println();
 
         //6 - ricercare tutti gli studenti che hanno media esami > X
-        Universita.getListaStudentiMediaEsamiMajX(21).forEach(System.out::println);
+        Universita.getListaStudentiMediaEsamiMajX(22).forEach(System.out::println);
         
     }
 }
