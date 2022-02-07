@@ -1,0 +1,116 @@
+package it.unikey;
+
+import it.unikey.exception.NotFoundException;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static it.unikey.Course.findCourseByName;
+import static it.unikey.Main.mapStudenteCorso;
+
+public class Student {
+
+    private int matricola;
+    private String codiceFiscale;
+    private String nome;
+    private String cognome;
+    private static int counter;
+
+    public Student(String codiceFiscale, String nome, String cognome) {
+        counter ++;
+        this.matricola = counter;
+        this.codiceFiscale = codiceFiscale;
+        this.nome = nome;
+        this.cognome = cognome;
+    }
+
+    public boolean studentIsPresentInHashMap() {
+        for (Student stud : mapStudenteCorso.keySet()) {
+            if(stud.matricola == this.matricola)
+                return true;
+        }
+        return false;
+    }
+
+    public void insertExam(LocalDate date, int grade, String courseName) {
+        Course course  = findCourseByName(courseName).orElseThrow(() -> new NotFoundException("Course not found"));
+
+        Exam exam = new Exam(
+                date,
+                grade,
+                course
+        );
+
+        if (!studentIsPresentInHashMap()) {
+            mapStudenteCorso.put(this, new ArrayList<>(Arrays.asList(exam)));
+        } else {
+            mapStudenteCorso.get(this).add(exam);
+        }
+
+
+
+    }
+
+    public List<Exam> getExamList() {
+        return mapStudenteCorso.get(this)
+                .stream().collect(Collectors.toList());
+    }
+
+
+    public static Optional<Student> findStudentByMatricola(int matricola) {
+        return University.students
+                .stream()
+                .filter(st -> st.getMatricola() == matricola)
+                .findFirst();
+    }
+
+    public int getMatricola() {
+        return matricola;
+    }
+
+    public void setMatricola(int matricola) {
+        this.matricola = matricola;
+    }
+
+    public void printStudentExams() {
+        mapStudenteCorso.get(this).forEach(System.out::println);
+    }
+
+
+    public String getCodiceFiscale() {
+        return codiceFiscale;
+    }
+
+    public void setCodiceFiscale(String codiceFiscale) {
+        this.codiceFiscale = codiceFiscale;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+
+    public static int getCounter() {
+        return counter;
+    }
+
+    public static void setCounter(int counter) {
+        Student.counter = counter;
+    }
+}
+//Student student = findStudentByMatricola(this.getMatricola()).orElseThrow(() -> new NotFoundException("Student not found"));

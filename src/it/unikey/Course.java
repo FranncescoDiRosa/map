@@ -1,21 +1,30 @@
 package it.unikey;
 
 
-public class Corso {
+import java.util.Optional;
+
+public class Course {
 
     private int counter;
     private String codice;
-    private String materia;
+    private String courseName;
     private String docente;
     private int cfu;
     //private Esame esame;
 
-    public Corso(String materia, String docente, int cfu) {
+    public Course(String materia, String docente, int cfu) {
         counter++;
         this.codice = counter + "";
-        this.materia = materia;
+        this.courseName = materia;
         this.docente = docente;
         this.cfu = cfu;
+    }
+
+    public static Optional<Course> findCourseByName(String name) {
+        return University.courses
+                .stream()
+                .filter(course -> course.getCourseName().equalsIgnoreCase(name))
+                .findFirst();
     }
 
     public String getCodice() {
@@ -26,12 +35,12 @@ public class Corso {
         this.codice = codice;
     }
 
-    public String getMateria() {
-        return materia;
+    public String getCourseName() {
+        return courseName;
     }
 
-    public void setMateria(String materia) {
-        this.materia = materia;
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
     public String getDocente() {

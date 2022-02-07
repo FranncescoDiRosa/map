@@ -1,30 +1,29 @@
 package it.unikey;
 
-import java.util.Date;
+import java.time.LocalDate;
 
-public class Esame {
+public class Exam {
 
-    private Date dataEsame;
+    private LocalDate dataEsame;
     private int voto;
     private boolean lode;
-    private Corso corso;
+    private Course corso;
     private int counter;
     private int idEsame;
 
-    public Esame(Date dataEsame, int voto, boolean lode, Corso corso) {
+    public Exam(LocalDate dataEsame, int voto, Course corso) {
         counter++;
         this.idEsame = counter;
         this.dataEsame = dataEsame;
         this.voto = voto;
-        this.lode = lode;
         this.corso = corso;
     }
 
-    public Date getDataEsame() {
+    public LocalDate getDataEsame() {
         return dataEsame;
     }
 
-    public void setDataEsame(Date dataEsame) {
+    public void setDataEsame(LocalDate dataEsame) {
         this.dataEsame = dataEsame;
     }
 
@@ -36,19 +35,11 @@ public class Esame {
         this.voto = voto;
     }
 
-    public boolean isLode() {
-        return lode;
-    }
-
-    public void setLode(boolean lode) {
-        this.lode = lode;
-    }
-
-    public Corso getCorso() {
+    public Course getCorso() {
         return corso;
     }
 
-    public void setCorso(Corso corso) {
+    public void setCorso(Course corso) {
         this.corso = corso;
     }
 
@@ -59,5 +50,6 @@ public class Esame {
     public void setIdEsame(int idEsame) {
         this.idEsame = idEsame;
     }
+
 
 }
