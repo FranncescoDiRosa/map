@@ -25,10 +25,13 @@ public class Main {
         Studente k = new Studente("1234567890123451", "Karol", "Wojtila");
         Studente l = new Studente("1234567890123452", "Maria", "Di Nazaret");
 
-        Esame m = new Esame(new Date(2022, 01, 05), 18, false, g, c);
+        Esame m = new Esame(new Date(2022, 1, 5), 18, false, g, c);
         Esame n = new Esame(new Date(2021, 12, 12), 30, true , g, d);
-        Esame o = new Esame(new Date(2022, 02, 01), 29, false, h, e);
-        Esame p = new Esame(new Date(2022, 01, 15), 19, false , i, f);
+        Esame o = new Esame(new Date(2022, 2, 1), 29, false, h, e);
+        Esame p = new Esame(new Date(2022, 1, 15), 19, false , i, f);
+        Esame q = new Esame(new Date(2021, 11, 30) , 24, false, j, e);
+        Esame r = new Esame(new Date(2022, 1, 23), 30, true, k, e);
+        Esame s = new Esame(new Date(2022, 1, 5), 18, false, l, c);
 
         System.out.println(Esame.getAvgVote(g));
         System.out.println(Esame.studentiAvgMaggioreDiN(20));
