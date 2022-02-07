@@ -8,9 +8,6 @@ public class Exam {
     private int score;
     private boolean merit;
 
-    private int s;
-    private int c;
-    Student student = new Student();
     Course course = new Course();
 
     public Exam() {
@@ -22,12 +19,11 @@ public class Exam {
         this.merit = merit;
     }
 
-    public Exam(Date examDate, int score, boolean merit, int s, int c) {
+    public Exam(Date examDate, Course course, int score, boolean merit) {
         this.examDate = examDate;
         this.score = score;
         this.merit = merit;
-        this.s = student.getIdCodeStudent();
-        this.c = course.getIdCodeCourse();
+        this.course = course;
     }
 
     public Date getExamDate() {
@@ -53,4 +49,6 @@ public class Exam {
     public void setMerit(boolean merit) {
         this.merit = merit;
     }
+
+
 }

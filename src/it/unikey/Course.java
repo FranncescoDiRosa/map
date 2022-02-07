@@ -8,6 +8,8 @@ public class Course {
     private String professor;
     private int creditsGiven;
 
+    Student student = new Student();
+
     public Course() {
     }
 
@@ -49,5 +51,26 @@ public class Course {
 
     public void setCreditsGiven(int creditsGiven) {
         this.creditsGiven = creditsGiven;
+    }
+
+
+    public boolean equals(Course course) {
+
+        if (course == null)
+        {
+            return false;
+        }
+
+        if (this == course)
+        {
+            return true;
+        }
+
+        if (this.getIdCodeCourse() == course.getIdCodeCourse() && this.getSubject() == course.getSubject())
+        {
+            return true;
+        }
+
+        return false;
     }
 }

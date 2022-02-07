@@ -1,5 +1,6 @@
 package it.unikey;
 
+import java.util.Date;
 import java.util.Scanner;
 
 public class UserInterface1 {
@@ -21,6 +22,7 @@ public class UserInterface1 {
                                "7. esci");;
 
             int mainChoice = scanner1.nextInt();
+            scanner1.nextLine();
 
             switch (mainChoice)
             {
@@ -42,11 +44,14 @@ public class UserInterface1 {
                         String yn = scanner1.nextLine();
                         switch (yn) {
                             case "y":
-
+                                case1Check = true;
+                            break;
                             case "n":
                                 case1Check = false;
+                            break;
                             default:
                                 System.out.println("dovevi inserire 'y' o 'n'... well too late now isn't it");
+                                case1Check = false;
                         }
 
 
@@ -62,29 +67,120 @@ public class UserInterface1 {
                         System.out.println("inserisci il professore incaricato");
                         String professor = scanner1.nextLine();
                         System.out.println("inserisci la quantità di crediti erogati dal corso");
-                        int credits = scanner1.nextInt();
+                        int credits = Integer.parseInt(scanner1.nextLine());
 
                         Course course = new Course();
-
                         ActivitiesRegitry.registerCourse(course);
 
                         System.out.println("vuoi inserire un altro corso? y/n");
                         String yn = scanner1.nextLine();
                         switch (yn) {
                             case "y":
-
+                                case2Check = true;
+                            break;
                             case "n":
                                 case2Check = false;
+                            break;
+                            default:
+                                System.out.println("dovevi inserire 'y' o 'n'... well too late now isn't it");
+                                case2Check = false;
+                        }
+                    }
+                break;
+
+                case 3:
+                    boolean case3Check = true;
+                    while (case3Check == true)
+                    {
+                        System.out.println("inserisci l'anno di esame");
+                        int examYear = scanner1.nextInt();
+                        System.out.println("inserisci il mese");
+                        int examMonth = scanner1.nextInt();
+                        System.out.println("inserisci il giorno");
+                        int examDay = scanner1.nextInt();
+
+                        Date examDate = new Date(examYear, examMonth, examDay);
+
+                        System.out.println("inserisci il nome dello studente");
+                        String studentFirstName = scanner1.nextLine();
+                        System.out.println("inserisci il cognome");
+                        String studentLastName = scanner1.nextLine();
+
+                        Student randomDonny = null;
+                        for (Student student : StudentsRegistry.registry)
+                        {
+                            if (studentFirstName.equalsIgnoreCase(student.getFirstName()) && studentLastName.equalsIgnoreCase(student.getLastName()))
+                            {
+                                randomDonny = student;
+                            }else
+                            {
+                                System.out.println("lo studente inserito non esiste");
+                                case3Check = false;
+                            }
+                        }
+
+                        System.out.println("a quale corso appartiene l'esame?");
+                        String examCourse = scanner1.nextLine();
+
+                        Course randomCourse = null;
+                        for (Course course : ActivitiesRegitry.courses)
+                        {
+                            if (examCourse.equalsIgnoreCase(course.getSubject()))
+                            {
+                                randomCourse = course;
+                            }else
+                            {
+                                System.out.println("questo corso non esiste");
+                            }
+                        }
+
+                        System.out.println("inserisci il puteggio");
+                        int examScore = Integer.parseInt(scanner1.nextLine());
+                        System.out.println("ha preso la lode? 'yes' o 'no'");
+                        String meritString = scanner1.nextLine();
+                        boolean meritBool;
+                            switch (meritString)
+                            {
+                                case "yes":
+                                   meritBool = true;
+                                break;
+                                case "no":
+                                    meritBool = false;
+                                break;
+                                default:
+                                    meritBool = true;
+                            }
+
+                        Exam exam = new Exam(examDate, randomCourse, examScore, meritBool);
+                        ActivitiesRegitry.registerExam(exam);
+
+                        System.out.println("vuoi inserire un altro esame? y/n");
+                        String yn = scanner1.nextLine();
+                        switch (yn) {
+                            case "y":
+                                case3Check = true;
+                                break;
+                            case "n":
+                                case3Check = false;
+                                break;
                             default:
                                 System.out.println("dovevi inserire 'y' o 'n'... well too late now isn't it");
                         }
                     }
                 break;
 
-                case 3:
                 case 4:
+
+                break;
+
                 case 5:
+
+                break;
+
                 case 6:
+
+                break;
+
                 case 7:
                     return;
 
