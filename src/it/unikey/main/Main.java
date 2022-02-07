@@ -19,24 +19,24 @@ public class Main {
         */
 
         Corso java = new Corso("Java", "Sara&Francesco", 9);
-        /*
+        
         Corso trippeldex = new Corso("Trippledex", "Geri Windley", 6);
         Corso yfind = new Corso("Y-find", "Cary Bach", 6);
         Corso otcom = new Corso("Otcom", "Hilario De Pinna", 12);
         Corso ventosanzap = new Corso("Ventosanzap", "Modesta Timlett", 3);
         Corso rank = new Corso("Rank", "Dominica Blackborn", 18);
         Corso zontrax = new Corso("Zontrax", "Lilas Tilne", 9);
-        */
+        
         
         Esame esameJava = new Esame("2022-02-05", 20, false);
-        /*
+        
         Esame esameTrippeldex = new Esame("2021-07-25", 23, false);
         Esame esameYfind = new Esame("2021-11-16", 28, false);
         Esame esameOtcom = new Esame("2019-07-20", 24, false);
         Esame esameVentosanzap = new Esame("2020-02-16", 18, false);
         Esame esameRank = new Esame("2019-09-27", 23, false);
         Esame esameZontrax = new Esame("2021-06-04", 20, false);
-        */
+        
 
 
         
@@ -53,9 +53,9 @@ public class Main {
 
         //2 - inserimento corso
         Universita.inserisciCorso(java);
-        /*
+        
         Universita.inserisciCorso(trippeldex);
-        //Universita.inserisciCorso(trippeldex);
+        Universita.inserisciCorso(trippeldex);
         Universita.inserisciCorso(otcom);
         Universita.inserisciCorso(yfind);
         //Universita.inserisciCorso(yfind);
@@ -66,47 +66,23 @@ public class Main {
         //Universita.inserisciCorso(ventosanzap);
         Universita.inserisciCorso(zontrax);
         //Universita.getListaCorsi().forEach(System.out::println);
-        */
+        
 
-        /*
-        Universita.inserisciStudenteNelCorso(edoardo, java);
-        Universita.inserisciStudenteNelCorso(edoardo, trippeldex);
-        Universita.inserisciStudenteNelCorso(edoardo, otcom);
-        Universita.inserisciStudenteNelCorso(edoardo, yfind);
-        //Universita.inserisciStudenteNelCorso(edoardo, yfind);
-        //Universita.inserisciStudenteNelCorso(edoardo, otcom);
-        Universita.inserisciStudenteNelCorso(edoardo, rank);
-        //Universita.inserisciStudenteNelCorso(edoardo, java);
-        //Universita.getListaStudentiCorsi().keySet().forEach(System.out::println);
-        //Universita.getListaStudentiCorsi().get(java).forEach(System.out::println);
-        */
-
-        /*
-        Universita.inserisciStudenteNelCorso(giraud, java);
-        Universita.inserisciStudenteNelCorso(giraud, trippeldex);
-        Universita.inserisciStudenteNelCorso(giraud, otcom);
-        Universita.inserisciStudenteNelCorso(giraud, yfind);
-        Universita.inserisciStudenteNelCorso(giraud, rank);
-
-        Universita.inserisciStudenteNelCorso(rudiger, java);
-        Universita.inserisciStudenteNelCorso(rudiger, trippeldex);
-        Universita.inserisciStudenteNelCorso(rudiger, otcom);
-        Universita.inserisciStudenteNelCorso(rudiger, yfind);
-        Universita.inserisciStudenteNelCorso(rudiger, rank);
-        */
 
 
         //3 - inserimento esame (con studente)
-        /*
+        
         Universita.inserisciEsame(esameJava, edoardo, java);
+        
         Universita.inserisciEsame(esameTrippeldex, edoardo, trippeldex);
-        //Universita.inserisciEsame(esameTrippeldex, edoardo, trippeldex);
+        Universita.inserisciEsame(esameTrippeldex, edoardo, trippeldex);
         Universita.inserisciEsame(esameYfind, edoardo, yfind);
         Universita.inserisciEsame(esameOtcom, edoardo, otcom);
         Universita.inserisciEsame(esameVentosanzap, edoardo, ventosanzap);
         Universita.inserisciEsame(esameRank, edoardo, rank);
         Universita.inserisciEsame(esameZontrax, edoardo, zontrax);
 
+        /*
         Universita.inserisciEsame(esameYfind, giraud, yfind);
         Universita.inserisciEsame(esameOtcom, giraud, otcom);
         Universita.inserisciEsame(esameVentosanzap, giraud, ventosanzap);
@@ -121,23 +97,25 @@ public class Main {
 
 
         //4 - calcola media esami di uno studente
-        /*
+    
         System.out.println("\n" + Universita.mediaEsamiStudente(edoardo));
+
+        /*
         System.out.println("\n" + Universita.mediaEsamiStudente(giraud));
         System.out.println("\n" + Universita.mediaEsamiStudente(rudiger) + "\n");
         */
 
         //5 - ricercare tutti gli esami sostenuti tra data X e data Y
-        /*
-        Universita.getListaEsamiCompresiXY((Date.valueOf("2010-05-23")), (Date.valueOf("2022-02-05"))).forEach(System.out::println);
+        
+        Universita.listaEsamiTraDataXY((Date.valueOf("2020-05-23")), (Date.valueOf("2022-02-05"))).forEach(System.out::println);
         System.out.println();
-        */
+        
 
 
         //6 - ricercare tutti gli studenti che hanno media esami > X
-        /*
-        Universita.getListaStudentiMediaEsamiMajX(21).forEach(System.out::println);
-        */
+        
+        Universita.listaStudentiMediaEsamiSupX(23).forEach(System.out::println);
+        
         
     }
 }

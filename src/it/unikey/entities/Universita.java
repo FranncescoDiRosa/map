@@ -8,7 +8,7 @@ public abstract class Universita {
 
     private static TreeSet<Corso> listaCorsi = new TreeSet<>();
     private static TreeSet<Studente> listaStudenti = new TreeSet<>();
-    
+
     private static TreeMap<Corso, TreeMap<Studente, TreeSet<Esame>>> listaEsami = new TreeMap<>();
 
     public static TreeSet<Studente> getListaStudenti() {
@@ -23,6 +23,7 @@ public abstract class Universita {
         return listaEsami;
     }
 
+    // 1 - Inserisci studente
     public static void inserisciStudente(Studente studente) {
         if (!listaStudenti.contains(studente)) {
             listaStudenti.add(studente);
@@ -34,6 +35,7 @@ public abstract class Universita {
         }
     }
 
+    // 2 - Inserisci corso
     public static void inserisciCorso(Corso corso) {
         if (!listaCorsi.contains(corso)) {
             listaCorsi.add(corso);
@@ -44,118 +46,95 @@ public abstract class Universita {
         }
     }
 
-    public static  TreeMap<Studente, TreeSet<Esame>> getListaStudentiCorso(Corso corso) {
+    public static TreeMap<Studente, TreeSet<Esame>> getListaStudentiCorso(Corso corso) {
         if (listaEsami.get(corso) == null)
             listaEsami.put(corso, new TreeMap<Studente, TreeSet<Esame>>());
         return listaEsami.get(corso);
     }
 
-    /*
     public static TreeSet<Esame> getListaEsamiStudente(Corso corso, Studente studente) {
-        if(listaEsamiStudentiCorsi.get(corso).get(studente) == null)
-        listaEsamiStudentiCorsi.get(corso).get(studente).add(new TreeSet<Esame>) 
-    }
-    */
-
-    public static void inserisciEsame(Corso corso, Studente studente, Esame esame) {
-        if(listaCorsi.contains(corso) && (!listaEsami.containsKey(corso))) {
-            listaEsami.put(corso, new TreeMap<Studente, TreeSet<Esame>>());
+        if (listaEsami.get(corso).get(studente) == null)
             listaEsami.get(corso).put(studente, new TreeSet<Esame>());
-            listaEsami.get(corso).get(studente).add(esame);
-        } else if(listaCorsi.contains(corso) && (listaEsami.containsKey(corso))) {
-            if(listaStudenti.contains(studente) && (!listaEsami.get(corso).containsKey(studente))) {
-                //listaEsami.get(corso).put(new TreeMap<Studente, TreeSet<Esame>>());
-
-            } else {
-                System.out.println("Errore: lo studente specificato non e' presente nel corso specificato, aggiungilo!");
-            }
-        }
-        
-        else {
-            System.out.println("Errore: il corso specificato non e' presente nella lista dei corsi universitari, aggiungilo!");
-        }
+        return listaEsami.get(corso).get(studente);
     }
 
-
-
-
-
-
-
-
-    /*
-    public static TreeSet<Studente> getListaStudentiNelCorso(Corso corso) {
-        if (listaStudentiCorsi.get(corso) == null)
-            listaStudentiCorsi.put(corso, new TreeSet<Studente>());
-        return listaStudentiCorsi.get(corso);
-    }
-
-    public static void inserisciStudenteNelCorso(Studente studente, Corso corso) {
-        if (listaCorsi.contains(corso)) {
-            if (listaStudenti.contains(studente)) {
-                if (!getListaStudentiNelCorso(corso).contains(studente)) {
-                    getListaStudentiNelCorso(corso).add(studente);
-                    System.out.println("\n" + studente.getNome() + " " + studente.getCognome()
-                            + " e' stato aggiunto con successo al corso " + corso.getMateria() + "!");
-                } else
-                    System.out.println("\nErrore: " + studente.getNome() + " " + studente.getCognome()
-                            + " e' gia' iscritta/o al corso '" + corso.getMateria() + "'");
-            } else
-                System.out.println("\nErrore: non ho trovato " + studente.getNome() + " " + studente.getCognome()
-                        + " nella lista degli studenti");
-
-        } else
-            System.out.println("\nErrore: Non ho trovato " + corso.getMateria() + " nella lista dei corsi");
-    }
-
+    // 3 - Inserisci esame
     public static void inserisciEsame(Esame esame, Studente studente, Corso corso) {
-        if (listaCorsi.contains(corso)) {
+        if (listaCorsi.contains(corso) && (!listaEsami.containsKey(corso))) {
+            listaEsami.put(corso, new TreeMap<Studente, TreeSet<Esame>>());
             if (listaStudenti.contains(studente)) {
-                if (getListaStudentiNelCorso(corso).contains(studente)) {
-                    listaEsami.add(esame);
-                    listaEsamiStudenti.put(esame, studente);
-                    listaEsamiCorsi.put(esame, corso);
-                    System.out.println("\nL'esame di " + corso.getMateria() + ", tenuto da " + studente.getNome() +
-                            " " + studente.getCognome() + " in data " + esame.getDataEsame() + " con voto finale " +
-                            esame.getVoto() + " e' stato aggiunto con successo alla lista degli esami!");
-                } else
-                    System.out.println("\nErrore: " + studente.getNome() + " " + studente.getCognome()
-                            + " non e' iscritta/o al corso '" + corso.getMateria() + "'");
-            } else
-                System.out.println("\nErrore: non ho trovato " + studente.getNome() + " " + studente.getCognome()
-                        + " nella lista degli studenti");
-        } else
-            System.out.println("\nErrore: Non ho trovato " + corso.getMateria() + " nella lista dei corsi");
-    }
-
-    public static float mediaEsamiStudente(Studente studente) {
-        float sommaVotiEsami = 0;
-        int numeroEsami = 0;
-        for (Esame esame : listaEsamiStudenti.keySet()) {
-            if (listaEsamiStudenti.get(esame).equals(studente)) {
-                sommaVotiEsami += esame.getVoto();
-                numeroEsami++;
+                listaEsami.get(corso).put(studente, new TreeSet<Esame>());
+                listaEsami.get(corso).get(studente).add(esame);
+                System.out.println("\nL'esame di " + studente.getNome() + " " + studente.getCognome() + " in "
+                        + corso.getMateria() + " e' stato verbalizzato correttamente!");
+            } else {
+                System.out.println("Errore: lo studente specificato non e' nella lista degli studenti");
+            }
+        } else if (listaCorsi.contains(corso) && (listaEsami.containsKey(corso))) {
+            if (listaStudenti.contains(studente) && (!listaEsami.get(corso).containsKey(studente))) {
+                listaEsami.get(corso).put(studente, new TreeSet<Esame>());
+                listaEsami.get(corso).get(studente).add(esame);
+                System.out.println("\nL'esame di " + studente.getNome() + " " + studente.getCognome() + " in "
+                        + corso.getMateria() + " e' stato verbalizzato correttamente!");
+            } else if (listaStudenti.contains(studente) && listaEsami.get(corso).containsKey(studente)) {
+                if (!listaEsami.get(corso).get(studente).contains(esame)) {
+                    listaEsami.get(corso).get(studente).add(esame);
+                    System.out.println("\nL'esame di " + studente.getNome() + " " + studente.getCognome() + " in "
+                            + corso.getMateria() + " e' stato verbalizzato correttamente!");
+                } else {
+                    System.out.println("Errore: e' gia' stato verbalizzato un esame di " + studente.getNome() + " "
+                            + studente.getCognome() + " in " + corso.getMateria() + " per la stessa data!");
+                }
+            } else {
+                System.out
+                        .println("Errore: lo studente specificato non e' presente nel corso specificato, aggiungilo!");
             }
         }
-        return sommaVotiEsami / numeroEsami;
-    }
-
-    public static TreeSet<Studente> getListaStudentiMediaEsamiMajX(int mediaMinima) {
-        TreeSet<Studente> listaStudentiValidi = new TreeSet<>();
-        for (Studente studente : listaEsamiStudenti.values()) {
-            if (mediaEsamiStudente(studente) > mediaMinima)
-                listaStudentiValidi.add(studente);
+        else {
+            System.out.println(
+                    "Errore: il corso specificato non e' presente nella lista dei corsi universitari, aggiungilo!");
         }
-        return listaStudentiValidi;
     }
 
-    public static TreeSet<Esame> getListaEsamiCompresiXY(Date x, Date y) {
+    // 4 - Media esami studente
+    public static float mediaEsamiStudente(Studente studente) {
+        float mediaEsamiStudente = 0;
+        int nEsamiStudente = 0;
+        for (Corso corso : listaEsami.keySet()) {
+            if (listaEsami.get(corso).containsKey(studente)) {
+                for (Esame esame : listaEsami.get(corso).get(studente)) {
+                    nEsamiStudente++;
+                    mediaEsamiStudente += esame.getVoto();
+                }
+            }
+        }
+        return mediaEsamiStudente / nEsamiStudente;
+    }
+
+    // 5 - ricercare tutti gli esami sostenuti tra data X e data Y
+    public static TreeSet<Esame> listaEsamiTraDataXY(Date x, Date y) {
         TreeSet<Esame> listaEsamiValidi = new TreeSet<>();
-        for(Esame esame : listaEsami) {
-            if(esame.getDataEsame().after(x) && esame.getDataEsame().before(y))
-                listaEsamiValidi.add(esame);
+        for(Corso corso : listaEsami.keySet()) {
+            for(Studente studente : listaEsami.get(corso).keySet()) {
+                for(Esame esame : listaEsami.get(corso).get(studente)) {
+                    if(esame.getDataEsame().after(x) && esame.getDataEsame().before(y))
+                        listaEsamiValidi.add(esame);
+                }
+            }
         }
         return listaEsamiValidi;
     }
-    */
+
+
+    // 6 - ricercare tutti gli studenti che hanno media esami > X
+    public static TreeSet<Studente> listaStudentiMediaEsamiSupX(float mediaEsamiMinima) {
+        TreeSet<Studente> listaStudentiValidi = new TreeSet<>();
+        for(Studente studente : listaStudenti) {
+            if(mediaEsamiStudente(studente) > mediaEsamiMinima)
+                listaStudentiValidi.add(studente);
+        }
+        if(listaStudentiValidi.size() == 0)
+            System.out.println("Non ho trovato studenti con una media superiore a " + mediaEsamiMinima);
+        return listaStudentiValidi;
+    }
 }
