@@ -6,20 +6,14 @@ import java.sql.Date;
 
 public class Esame implements Comparable<Esame> {
 
-    private String codiceEsame;
     private Date dataEsame;
     private int voto;
     private boolean lode;
 
     public Esame(String dataEsame, int voto, boolean lode) {
-        this.codiceEsame = UUID.randomUUID().toString();
         this.dataEsame = Date.valueOf(dataEsame);
         this.voto = voto;
         this.lode = lode;
-    }
-
-    public String getCodiceEsame() {
-        return codiceEsame;
     }
 
     public Date getDataEsame() {
@@ -50,7 +44,7 @@ public class Esame implements Comparable<Esame> {
 
     @Override
     public String toString() {
-        return "Esame [codiceEsame=" + codiceEsame + ", dataEsame=" + dataEsame + ", lode=" + lode + ", voto=" + voto
+        return "Esame [dataEsame=" + dataEsame + ", lode=" + lode + ", voto=" + voto
                 + "]";
     }
 
@@ -63,11 +57,6 @@ public class Esame implements Comparable<Esame> {
         if (getClass() != obj.getClass())
             return false;
         Esame other = (Esame) obj;
-        if (codiceEsame == null) {
-            if (other.codiceEsame != null)
-                return false;
-        } else if (!codiceEsame.equals(other.codiceEsame))
-            return false;
         if (dataEsame == null) {
             if (other.dataEsame != null)
                 return false;
