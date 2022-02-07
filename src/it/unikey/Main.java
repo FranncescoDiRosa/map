@@ -21,9 +21,10 @@ public class Main {
         insertStudent(mario);
         printAllStudents();
         mario.insertExam(LocalDate.parse("2021-09-03"), 8, "Java");
-        mario.insertExam(LocalDate.parse("2021-09-03"), 5, "Python");
+        mario.insertExam(LocalDate.parse("2020-05-01"), 5, "Python");
         mario.printStudentExams();
         System.out.println(mario.getGradeAverage());
+        System.out.println(mario.getExamsBetween(LocalDate.parse("2020-04-04"), LocalDate.parse("2020-06-05")));
     }
 
 

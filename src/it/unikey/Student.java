@@ -92,6 +92,18 @@ public class Student {
                 ) / (mapStudenteCorso.get(this).size());
     }
 
+    public List<Exam> getExamsBetween(LocalDate start, LocalDate end) {
+        return mapStudenteCorso.get(this)
+                .stream()
+                .filter
+                (
+                        examDate ->
+                        examDate.getDataEsame().isAfter(start)
+                        && examDate.getDataEsame().isBefore(end)
+                )
+                .collect(Collectors.toList());
+    }
+
 
 
 }
