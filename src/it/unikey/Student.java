@@ -36,11 +36,11 @@ public class Student {
         return false;
     }
 
-    public void insertExam(LocalDate date, int grade, String courseName) {
+    public void insertExam(String date, int grade, String courseName) {
         Course course  = findCourseByName(courseName).orElseThrow(() -> new NotFoundException("Course not found"));
 
         Exam exam = new Exam(
-                date,
+                LocalDate.parse(date),
                 grade,
                 course
         );
@@ -83,26 +83,30 @@ public class Student {
         return nome;
     }
 
-    public Double getGradeAverage() {
-        return (
-                mapStudenteCorso.get(this)
-                .stream()
-                .mapToDouble(Exam::getVoto)
-                .sum()
-                ) / (mapStudenteCorso.get(this).size());
+    public void printGradeAverage() {
+        System.out.println(
+                (mapStudenteCorso.get(this)
+                                .stream()
+                                .mapToDouble(Exam::getVoto)
+                                .sum()) / (mapStudenteCorso.get(this).size())
+        );
+
     }
 
-    public List<Exam> getExamsBetween(LocalDate start, LocalDate end) {
-        return mapStudenteCorso.get(this)
+    public void getExamsBetween(String start, String end) {
+        mapStudenteCorso.get(this)
                 .stream()
                 .filter
                 (
                         examDate ->
-                        examDate.getDataEsame().isAfter(start)
-                        && examDate.getDataEsame().isBefore(end)
+                        examDate.getDataEsame().isAfter(LocalDate.parse(start))
+                        && examDate.getDataEsame().isBefore(LocalDate.parse(end))
                 )
-                .collect(Collectors.toList());
+                .forEach(System.out::println);
+
     }
+
+
 
 
 
