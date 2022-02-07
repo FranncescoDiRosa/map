@@ -10,13 +10,20 @@ public class Main {
     public static Map<Student, List<Exam>> mapStudenteCorso = new HashMap<>();
 
     public static void main(String[] args) {
+        /*
+
+        4) calcola media esami di uno studente
+        5) ricercare tutti gli esami sostenuti tra data X e data Y
+        6) ricercare tutti gli studenti che hanno media esami > X
+         */
 
         Student mario = new Student("mrss", "Mario", "Red");
         insertStudent(mario);
         printAllStudents();
-        mario.insertExam(LocalDate.parse("2021-09-03"), 25, "Java");
-        mario.insertExam(LocalDate.parse("2021-09-03"), 25, "Python");
+        mario.insertExam(LocalDate.parse("2021-09-03"), 8, "Java");
+        mario.insertExam(LocalDate.parse("2021-09-03"), 5, "Python");
         mario.printStudentExams();
+        System.out.println(mario.getGradeAverage());
     }
 
 

@@ -19,6 +19,18 @@ public class Exam {
         this.corso = corso;
     }
 
+    @Override
+    public String toString() {
+        return "Exam{" +
+                "dataEsame=" + dataEsame +
+                ", voto=" + voto +
+                ", lode=" + lode +
+                ", corso=" + corso +
+                ", counter=" + counter +
+                ", idEsame=" + idEsame +
+                '}';
+    }
+
     public LocalDate getDataEsame() {
         return dataEsame;
     }
@@ -35,12 +47,28 @@ public class Exam {
         this.voto = voto;
     }
 
+    public boolean isLode() {
+        return lode;
+    }
+
+    public void setLode(boolean lode) {
+        this.lode = lode;
+    }
+
     public Course getCorso() {
         return corso;
     }
 
     public void setCorso(Course corso) {
         this.corso = corso;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
     }
 
     public int getIdEsame() {
@@ -50,6 +78,4 @@ public class Exam {
     public void setIdEsame(int idEsame) {
         this.idEsame = idEsame;
     }
-
-
 }

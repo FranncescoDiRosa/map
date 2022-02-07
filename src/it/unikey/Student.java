@@ -56,8 +56,7 @@ public class Student {
     }
 
     public List<Exam> getExamList() {
-        return mapStudenteCorso.get(this)
-                .stream().collect(Collectors.toList());
+        return new ArrayList<>(mapStudenteCorso.get(this));
     }
 
 
@@ -80,37 +79,19 @@ public class Student {
         mapStudenteCorso.get(this).forEach(System.out::println);
     }
 
-
-    public String getCodiceFiscale() {
-        return codiceFiscale;
-    }
-
-    public void setCodiceFiscale(String codiceFiscale) {
-        this.codiceFiscale = codiceFiscale;
-    }
-
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public Double getGradeAverage() {
+        return (
+                mapStudenteCorso.get(this)
+                .stream()
+                .mapToDouble(Exam::getVoto)
+                .sum()
+                ) / (mapStudenteCorso.get(this).size());
     }
 
-    public String getCognome() {
-        return cognome;
-    }
 
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
-    }
 
-    public static int getCounter() {
-        return counter;
-    }
-
-    public static void setCounter(int counter) {
-        Student.counter = counter;
-    }
 }
-//Student student = findStudentByMatricola(this.getMatricola()).orElseThrow(() -> new NotFoundException("Student not found"));

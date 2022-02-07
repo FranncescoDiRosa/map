@@ -39,24 +39,14 @@ public class Course {
         return courseName;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    @Override
+    public String toString() {
+        return "Course{" +
+                "counter=" + counter +
+                ", codice='" + codice + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", docente='" + docente + '\'' +
+                ", cfu=" + cfu +
+                '}';
     }
-
-    public String getDocente() {
-        return docente;
-    }
-
-    public void setDocente(String docente) {
-        this.docente = docente;
-    }
-
-    public int getCfu() {
-        return cfu;
-    }
-
-    public void setCfu(int cfu) {
-        this.cfu = cfu;
-    }
-
 }
