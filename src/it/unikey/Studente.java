@@ -1,25 +1,23 @@
 package it.unikey;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Studente {
     private int rollNum;
     private int socialSecurityNum;
     private String name;
     private String surname;
-    private TreeMap<Corso,Esame> elencoCorsi;
+    private TreeMap<Corso, Esame> libretto;
 
-
-    public Studente() { }
+    public Studente() {
+    }
 
     public Studente(int rollNum, int socialSecurityNum, String name, String surname) {
         this.rollNum = rollNum;
         this.socialSecurityNum = socialSecurityNum;
         this.name = name;
         this.surname = surname;
-        this.elencoCorsi = elencoCorsi;
+        this.libretto = new TreeMap<>();
     }
 
     public int getRollNum() {
@@ -54,15 +52,22 @@ public class Studente {
         this.surname = surname;
     }
 
-    public TreeMap<Corso, Esame> getElencoCorsi() {
-        return elencoCorsi;
+    public TreeMap<Corso, Esame> getLibretto() {
+        return libretto;
     }
 
-    public void setElencoCorsi(TreeMap<Corso, Esame> elencoCorsi) {
-        this.elencoCorsi = elencoCorsi;
+    public void aggiornaLibretto(Corso course, Esame esame) {
+        this.libretto.put(course, esame);
     }
 
-    public static void insertStudent(List<Studente> listaStudenti, Studente studente){
-        listaStudenti.add(studente);
+    public int mediaEsame() {
+        int sommaVoto = 0;
+        int numeroesami = 0;
+        for (Esame e : libretto.values()) {
+            sommaVoto += e.getGrade();
+            numeroesami++;
+        }
+        return sommaVoto / numeroesami;
     }
+
 }

@@ -1,6 +1,8 @@
 package it.unikey;
 
-import java.util.Date;
+import java.sql.Date;
+
+;
 
 public class Esame {
     private int codice;
@@ -8,11 +10,12 @@ public class Esame {
     private int grade;
     private boolean laude;
 
-    public Esame() { }
+    public Esame() {
+    }
 
-    public Esame(int codice, Date date, int grade, boolean laude) {
+    public Esame(int codice, String date, int grade, boolean laude) {
         this.codice = codice;
-        this.date = date;
+        this.date = Date.valueOf(date);
         this.grade = grade;
         this.laude = laude;
     }
@@ -27,10 +30,6 @@ public class Esame {
 
     public Date getDate() {
         return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public int getGrade() {

@@ -2,20 +2,19 @@ package it.unikey;
 
 import java.util.List;
 
-public class Corso {
+public class Corso implements Comparable<Corso> {
     private String serialNum;
     private String subject;
     private String teacher;
-    private Esame esame;//deve essere inteso come oggetto unico
     private int cfu;
 
-    public Corso() { }
+    public Corso() {
+    }
 
-    public Corso(String serialNum, String subject, String teacher, Esame esame, int cfu) {
+    public Corso(String serialNum, String subject, String teacher, int cfu) {
         this.serialNum = serialNum;
         this.subject = subject;
         this.teacher = teacher;
-        this.esame = esame;
         this.cfu = cfu;
     }
 
@@ -43,14 +42,6 @@ public class Corso {
         this.teacher = teacher;
     }
 
-    public Esame getEsame() {
-        return esame;
-    }
-
-    public void setEsame(Esame esame) {
-        this.esame = esame;
-    }
-
     public int getCfu() {
         return cfu;
     }
@@ -59,9 +50,17 @@ public class Corso {
         this.cfu = cfu;
     }
 
-    public void insertCourse(List<Corso> listaCorsi,Corso corso){
-        listaCorsi.add(corso);
+
+    //il comparator deve essere inserito all'interno della classe che contiene il campo che utilizzo come
+    //metro di paragone, in questo caso corso per la mappa corso esame
+
+    @Override
+    public int compareTo(Corso o) {
+        return serialNum.compareTo(o.serialNum);
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }
