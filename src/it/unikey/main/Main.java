@@ -13,10 +13,10 @@ public class Main {
 
         
         Studente edoardo = new Studente("CRRDRD96P08B114A", "Edoardo", "Carradori");
-        /*
+        
         Studente giraud = new Studente("3589893300183572", "Giraud", "Gasticke");
         Studente rudiger = new Studente("374288161403224", "Rudiger", "Crewes");
-        */
+        
 
         Corso java = new Corso("Java", "Sara&Francesco", 9);
         
@@ -42,12 +42,12 @@ public class Main {
         
         //1 - Inserimento studenti
         Universita.inserisciStudente(edoardo);
-        //Universita.inserisciStudente(edoardo);
-        //Universita.inserisciStudente(giraud);
-        //Universita.inserisciStudente(rudiger);
-        //Universita.inserisciStudente(rudiger);
-        //Universita.inserisciStudente(rudiger);
-        //Universita.getListaStudenti().forEach(System.out::println);
+        Universita.inserisciStudente(edoardo);
+        Universita.inserisciStudente(giraud);
+        Universita.inserisciStudente(rudiger);
+        Universita.inserisciStudente(rudiger);
+        Universita.inserisciStudente(rudiger);
+        Universita.getListaStudenti().forEach(System.out::println);
 
 
 
@@ -58,14 +58,14 @@ public class Main {
         Universita.inserisciCorso(trippeldex);
         Universita.inserisciCorso(otcom);
         Universita.inserisciCorso(yfind);
-        //Universita.inserisciCorso(yfind);
+        Universita.inserisciCorso(yfind);
         Universita.inserisciCorso(rank);
-        //Universita.inserisciCorso(rank);
-        //Universita.inserisciCorso(rank);
+        Universita.inserisciCorso(rank);
+        Universita.inserisciCorso(rank);
         Universita.inserisciCorso(ventosanzap);
-        //Universita.inserisciCorso(ventosanzap);
+        Universita.inserisciCorso(ventosanzap);
         Universita.inserisciCorso(zontrax);
-        //Universita.getListaCorsi().forEach(System.out::println);
+        Universita.getListaCorsi().forEach(System.out::println);
         
 
 
@@ -82,7 +82,7 @@ public class Main {
         Universita.inserisciEsame(esameRank, edoardo, rank);
         Universita.inserisciEsame(esameZontrax, edoardo, zontrax);
 
-        /*
+        
         Universita.inserisciEsame(esameYfind, giraud, yfind);
         Universita.inserisciEsame(esameOtcom, giraud, otcom);
         Universita.inserisciEsame(esameVentosanzap, giraud, ventosanzap);
@@ -92,7 +92,7 @@ public class Main {
         Universita.inserisciEsame(esameVentosanzap, rudiger, ventosanzap);
         Universita.inserisciEsame(esameRank, rudiger, rank);
         Universita.inserisciEsame(esameZontrax, rudiger, zontrax);
-        */
+        
 
 
 
@@ -100,10 +100,10 @@ public class Main {
     
         System.out.println("\n" + Universita.mediaEsamiStudente(edoardo));
 
-        /*
+        
         System.out.println("\n" + Universita.mediaEsamiStudente(giraud));
         System.out.println("\n" + Universita.mediaEsamiStudente(rudiger) + "\n");
-        */
+        
 
         //5 - ricercare tutti gli esami sostenuti tra data X e data Y
         
@@ -115,7 +115,6 @@ public class Main {
         //6 - ricercare tutti gli studenti che hanno media esami > X
         
         Universita.listaStudentiMediaEsamiSupX(23).forEach(System.out::println);
-        
         
     }
 }
