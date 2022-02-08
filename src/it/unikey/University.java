@@ -1,11 +1,8 @@
 package it.unikey;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
-
-import static it.unikey.Main.mapStudenteCorso;
+import java.util.stream.Stream;
 
 public class University {
     public static List<Student> students = new ArrayList<>(
@@ -22,6 +19,8 @@ public class University {
                 new Course("Python", "Sara Gaudiosi", 6)
             )
     );
+
+    public static Map<Student, List<Exam>> mapStudenteCorso = new HashMap<>();
 
     public static void insertStudent(Student student){
         students.add(student);
@@ -41,13 +40,23 @@ public class University {
         System.out.println("-----------------------------------------------------------");
         System.out.println();
     }
+    /* ricercare tutti gli studenti che hanno media esami > X */
+    public static void above(Double target) {
 
-//    public List<Student> averageAbove(Double average) {
-//        University.students
-//                .stream()
-//                .filter(ex -> getGradeAverage() > average)
-//                .map(e)
-//                .collect(Collectors.toList())
-//    }
+        mapStudenteCorso.keySet()
+                .stream()
+                .filter
+                (
+                    student ->
+                    student.returnGradeAverage() > target
+                ).forEach(System.out::println);
+
+    }
+
+    public static Double returnAverage(List<Exam> examList) {
+               return (examList.stream()
+                        .mapToDouble(Exam::getVoto)
+                        .sum()) / (examList.size());
+    }
 
 }

@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static it.unikey.Course.findCourseByName;
-import static it.unikey.Main.mapStudenteCorso;
+import static it.unikey.University.mapStudenteCorso;
 
 public class Student {
 
@@ -93,6 +92,15 @@ public class Student {
 
     }
 
+    public Double returnGradeAverage() {
+        return  (mapStudenteCorso.get(this)
+                        .stream()
+                        .mapToDouble(Exam::getVoto)
+                        .sum()) / (mapStudenteCorso.get(this).size());
+
+
+    }
+
     public void getExamsBetween(String start, String end) {
         mapStudenteCorso.get(this)
                 .stream()
@@ -107,7 +115,13 @@ public class Student {
     }
 
 
-
-
-
+    @Override
+    public String toString() {
+        return "Student{" +
+                "matricola=" + matricola +
+                ", codiceFiscale='" + codiceFiscale + '\'' +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                '}';
+    }
 }
